@@ -174,20 +174,6 @@ LOGGING = {
     },
 }
 
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "redis://localhost:6379/1")
-CELERY_TIMEZONE = "UTC"
-
-
-CELERY_BEAT_SCHEDULE = {
-    "scrape-jobs-every-hour": {
-        "task": "jobs.tasks.scrape_jobs_task",
-        "schedule": 60*5, # <-for test | for prod -> 3600.0,
-        "args": (0,True),
-    },
-}
-
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
