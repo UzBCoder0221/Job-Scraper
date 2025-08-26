@@ -1,7 +1,0 @@
-1. Populate _.env_
-2. `pip install -r requirements.txt`
-3. `python scraper_api_service/manage.py migrate` or `python scraper_api_service\manage.py migrate`
-4. `python scraper_api_service/manage.py collectstatic --no-input` or `python scraper_api_service\manage.py collectstatic --no-input`
-5. `python scraper_api_service/manage.py scrape_jobs --catch-up` or `python scraper_api_service\manage.py scrape_jobs --catch-up`
-6. `python scraper_api_service/manage.py runserver (0.0.0.0:8000)` or `python scraper_api_service\manage.py runserver (0.0.0.0:8000)`
-7. `python -m telegram_bot_service.bot`
