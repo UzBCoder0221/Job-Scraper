@@ -9,12 +9,18 @@ class APIClient:
     def get_jobs(self, params:dict={}):
         url = f"{self.base_url}/jobs/"
         temp_params={"search":params.get("search",None)}
-        if self.session.get(url,params=temp_params).json().get('count',0) and self.session.get(url,params=temp_params).json().get('next',0):
+        if params.get("page",1)>1:
+            if self.session.get(url,params=temp_params).json().get('count',0) and self.session.get(url,params=temp_params).json().get('next',0):
+                resp = self.session.get(url,params=params)
+                resp.raise_for_status()
+                results=resp.json()
+            else:
+                results={}
+        else:
             resp = self.session.get(url,params=params)
             resp.raise_for_status()
             results=resp.json()
-        else:
-            results={}
+
         return results
     
     def get_job(self, job_id):
